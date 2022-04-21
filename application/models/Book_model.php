@@ -4,6 +4,10 @@
             $this->load->database();
         }
 
+        public function insertBook($data) {
+            $this->db->insert('books', $data);
+        }
+
         public function getBooks($author = False) {
             if ($author === FALSE) {
                 $query = $this->db->get('books');
