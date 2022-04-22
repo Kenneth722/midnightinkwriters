@@ -27,8 +27,12 @@
                 color: #6190E8;
             }
 
+            .bg-purple {
+                background-color: #6190E8;
+            }
+
             #site-content {
-                height: 25vh;
+                height: 30vh;
                 padding-top: 82px;
                 background: #fafbfc;
             }

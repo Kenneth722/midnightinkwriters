@@ -12,7 +12,7 @@
                     <a href="#packages" class="btn btn-purple btn-lg text-white scrollto">View Packages</a>
                 </div>
                 <div class="form-group">
-                    <a href="authors/addnewview" class="btn btn-purple btn-lg text-white">Subscribe</a>
+                    <a href="subscription" class="btn btn-purple btn-lg text-white">Subscribe</a>
                 </div>
                 <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
                 <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
