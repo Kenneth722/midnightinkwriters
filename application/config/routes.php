@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$route['subscription'] = 'subscription/index';
 $route['books'] = 'books/index';
 $route['auth'] = 'auth/index';
 $route['default_controller'] = 'pages/view';
