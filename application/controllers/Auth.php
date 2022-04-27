@@ -99,7 +99,7 @@ class Auth extends CI_Controller
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
 				redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
-			}
+			} 
 		}
 		else
 		{
@@ -112,15 +112,27 @@ class Auth extends CI_Controller
 				'id' => 'identity',
 				'type' => 'text',
 				'value' => $this->form_validation->set_value('identity'),
+				'class' => 'form-control'
 			];
 
 			$this->data['password'] = [
 				'name' => 'password',
 				'id' => 'password',
 				'type' => 'password',
+				'class' => 'form-control'
 			];
 
+			$this->data['submit'] = [
+				'name' => 'submit',
+				'type' => 'submit',
+				'value' => lang('login_submit_btn'),
+				'class' => 'btn btn-purple text-white'
+			];
+
+			$this->load->view('templates/header');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
+			// $this->load->view('auth/login', $data);
+			$this->load->view('templates/footer');
 		}
 	}
 
