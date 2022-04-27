@@ -1,5 +1,6 @@
 <html>
     <head>
+        <base href="<?php echo base_url(); ?>">
         <title></title>
         <!-- Favicons -->
         <link href="<?php echo base_url(); ?>/assets/img/favicon.png" rel="icon">
@@ -32,9 +33,9 @@
             }
 
             #site-content {
-                height: 30vh;
+                height: 100%;
                 padding-top: 82px;
-                background: #fafbfc;
+                /*background: #fafbfc;*/
             }
         </style>
     </head>
@@ -103,11 +104,11 @@
                     <?php } ?>
                     <?php if ($this->ion_auth->in_group(array('author'))) { ?>
                         <li><a class="nav-link scrollto active" href="<?php echo base_url(); ?>">Home</a></li>
-                        <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                        <li class="dropdown"><a href=""><span>Services</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a href="#"><i class="bi bi-plus">Add Services </i></a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
+                                <li><a href="services/index"><i class="bi bi-list">List of Services </i></a></li>
+                                <li><a href="services/addNewView"><i class="bi bi-plus">Add Services </i></a></li>
+                                <li><a href="#"><i class="bi bi-plus">Add Category </i></a></li>
                                 <li><a href="#">Deep Drop Down 4</a></li>
                                 <li><a href="#">Deep Drop Down 5</a></li>
                             </ul>
