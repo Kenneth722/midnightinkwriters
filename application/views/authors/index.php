@@ -6,7 +6,7 @@
 					<div class="card-header">
 						<div class="card-title">Register Author</div>
 					</div>
-					<form method="POST" action="addNew">
+					<form method="POST" action="authors/addNew">
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-6 col-sm-12">
