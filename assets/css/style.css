@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 .navbar .dropdown ul a i {
-  font-size: 12px;
+  font-size: 16px;
 }
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
   color: #16df7e;
