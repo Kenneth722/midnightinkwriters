@@ -6,7 +6,7 @@
 					<div class="card-body">
 						<center class="text-white">
 							<p class="h1"><strong>Basic</strong></p>
-							<a href="authors/addnewview?price=1000&type=basic" class="btn btn-success">Subscribe</a>
+							<a href="authors/addnewview?price=9.99&type=basic" class="btn btn-success">Subscribe</a>
 						</center>
 					</div>
 				</div>
