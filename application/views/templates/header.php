@@ -90,19 +90,7 @@
                     </li>
                     <li class="dropdown"><a href="#"><span>More</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                            <ul>
-                            <li><a href="#">Deep Drop Down 1</a></li>
-                            <li><a href="#">Deep Drop Down 2</a></li>
-                            <li><a href="#">Deep Drop Down 3</a></li>
-                            <li><a href="#">Deep Drop Down 4</a></li>
-                            <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
+                        <li><a href="auth/login">Login</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -115,7 +103,15 @@
                     <?php } ?>
                     <?php if ($this->ion_auth->in_group(array('author'))) { ?>
                         <li><a class="nav-link scrollto active" href="<?php echo base_url(); ?>">Home</a></li>
-                        <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                        <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="#"><i class="bi bi-plus">Add Services </i></a></li>
+                                <li><a href="#">Deep Drop Down 2</a></li>
+                                <li><a href="#">Deep Drop Down 3</a></li>
+                                <li><a href="#">Deep Drop Down 4</a></li>
+                                <li><a href="#">Deep Drop Down 5</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                             <li><a href="#">My Info</a></li>
