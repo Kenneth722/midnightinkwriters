@@ -3,7 +3,7 @@
 		<h2>Add Services</h2>
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<div class="card">
+				<div class="card bg-purple text-white">
 					<form method="POST" action="services/addNew">
 						<div class="card-body">
 							<div class="row">
@@ -16,32 +16,42 @@
 								<div class="col-sm-12 col-md-6">
 									<div class="form-group">
 										<label class="form-label">Price: </label>
-										<input type="text" name="price" class="form-control" required>
+										<input type="number" name="price" class="form-control" required>
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-12 col-md-6">
 									<div class="form-group">
-										<label class="form-label">Service Category: </label>
-										<select class="form-control" required name="category">
-											<option>Category1</option>
-											<option>Category2</option>
-											<option>Category3</option>
-										</select>
+										<label class="form-label">Description: </label>
+										<textarea class="form-control" name="description" required></textarea>
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6">
 									<div class="form-group">
-										<label class="form-label">Description: </label>
-										<textarea class="form-control" name="description"></textarea>
+										<label class="form-label">Sub Description: </label>
+										<textarea class="form-control" name="sub_description" required></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12 col-md-6">
+									<div class="form-group">
+										<label class="form-label">What You'll Get Description: </label>
+										<textarea class="form-control" name="receive_description" required></textarea>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-6">
+									<div class="form-group">
+										<label class="form-label">How to Use Description: </label>
+										<textarea class="form-control" name="use_description" required></textarea>
 									</div>
 								</div>
 							</div>
 							<div class="row mt-5">
 								<div class="col-sm-12 col-md-12">
 									<div class="form-group float-end">
-										<button class="btn btn-primary" type="submit">Add New</button>
+										<button class="btn btn-success" type="submit">Add New</button>
 									</div>
 								</div>
 							</div>
