@@ -100,7 +100,21 @@
                 <ul>
                     <?php if ($this->ion_auth->in_group(array('admin'))) { ?>
                         <li><a class="nav-link scrollto active" href="<?php echo base_url(); ?>">Home</a></li>
-                        <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                        <li class="dropdown"><a href=""><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="services/index"><i class="bi bi-list">List of Services </i></a></li>
+                                <li><a href="services/addNewView"><i class="bi bi-plus">Add Services </i></a></li>
+                                <li><a href="#"><i class="bi bi-plus">Add Category </i></a></li>
+                                <li><a href="#">Deep Drop Down 4</a></li>
+                                <li><a href="#">Deep Drop Down 5</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                            <li><a href="#">My Info</a></li>
+                            <li><a href="auth/logout">Logout</a></li>
+                            </ul>
+                        </li>
                     <?php } ?>
                     <?php if ($this->ion_auth->in_group(array('author'))) { ?>
                         <li><a class="nav-link scrollto active" href="<?php echo base_url(); ?>">Home</a></li>
