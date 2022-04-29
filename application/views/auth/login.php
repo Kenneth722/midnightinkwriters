@@ -8,7 +8,7 @@
 
     <div class="row">
       <div class="col-md-6 col-sm-6">
-        <div class="card">
+        <div class="card bg-purple text-white">
           <div class="card-body">
             <?php echo form_open("auth/login");?>
               <p>
@@ -28,7 +28,7 @@
 
               <p><?php echo form_submit($submit);?></p>
             <?php echo form_close();?>
-            <p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
+            <p><a href="forgot_password" class="text-white"><?php echo lang('login_forgot_password');?></a></p>
           </div>
         </div>
       </div>
