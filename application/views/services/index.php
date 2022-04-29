@@ -1,3 +1,6 @@
-<div id="site-content">
+<!-- <div id="site-content">
 	<p>Services</p>
-</div>
+</div> -->
+<?php
+	echo phpinfo();
+?>
