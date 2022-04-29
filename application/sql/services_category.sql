@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2022 at 03:16 AM
+-- Generation Time: Apr 29, 2022 at 03:23 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -31,7 +31,7 @@ CREATE TABLE `services_category` (
   `id` int(5) NOT NULL,
   `name` int(50) NOT NULL,
   `display_name` int(50) NOT NULL,
-  `date_created` datetime NOT NULL
+  `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
