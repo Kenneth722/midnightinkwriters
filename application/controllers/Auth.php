@@ -126,7 +126,7 @@ class Auth extends CI_Controller
 				'name' => 'submit',
 				'type' => 'submit',
 				'value' => lang('login_submit_btn'),
-				'class' => 'btn btn-purple text-white'
+				'class' => 'btn btn-success text-white'
 			];
 
 			$this->load->view('templates/header');
