@@ -3,15 +3,24 @@
     	public function __construct() {
     		parent::__construct();
     		$this->load->model('author_model');
+            $this->load->model('ion_auth_model');
     		$this->load->database();
     		$this->load->library(['ion_auth', 'form_validation']);
     	}
+
+        public function index() {
+            $data['authors'] = $this->author_model->getAuthors();
+            $this->load->view('templates/header');
+            $this->load->view('authors/index', $data);
+            $this->load->view('templates/footer');
+        }
+
     	public function addNewView() {
     		$data['subscription_price'] = $this->input->get('price');
     		$data['subscription_type'] = $this->input->get('type');
 
     		$this->load->view('templates/header');
-        	$this->load->view('authors/index', $data);
+        	$this->load->view('authors/add_new', $data);
         	$this->load->view('templates/footer');
         }
 

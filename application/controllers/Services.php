@@ -7,10 +7,10 @@
         }
 
         public function index() {
-        	// $this->load->view('templates/header');
-        	// $this->load->view('services/index');
-        	// $this->load->view('templates/footer');
-        	$this->load->view('services/index');
+        	$data['services'] = $this->service_model->getServices();
+        	$this->load->view('templates/header');
+        	$this->load->view('services/index', $data);
+        	$this->load->view('templates/footer');
         }
 
         public function addNewView() {
