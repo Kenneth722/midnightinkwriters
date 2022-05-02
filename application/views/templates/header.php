@@ -15,6 +15,7 @@
         <link href="<?php echo base_url(); ?>/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/plugin/DataTables/datatables.min.css"/>
 
         <!-- Template Main CSS File -->
         <link href="<?php echo base_url(); ?>/assets/css/style.css" rel="stylesheet">
