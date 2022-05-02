@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$route['authors'] = 'authors/index';
 $route['services'] = 'services/index';
 $route['subscription'] = 'subscription/index';
 $route['books'] = 'books/index';
