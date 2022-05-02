@@ -7,4 +7,9 @@
     	public function insertService($data) {
     		$this->db->insert('services', $data);
     	}
+
+    	public function getServices() {
+    		$query = $this->db->get('services');
+    		return $query->result();
+    	}
     }

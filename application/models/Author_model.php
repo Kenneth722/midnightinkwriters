@@ -19,4 +19,10 @@
         	return $query->result();
         }
 
+        public function getAuthorbyIonId($ion) {
+            $this->db->where('id', $ion);
+            $query = $this->db->get('users');
+            return $query->row();
+        }
+
     }
