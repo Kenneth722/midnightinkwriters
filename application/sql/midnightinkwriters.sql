@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2022 at 12:48 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: May 04, 2022 at 02:49 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,8 @@ CREATE TABLE `authors` (
 --
 
 INSERT INTO `authors` (`id`, `firstname`, `middlename`, `lastname`, `address`, `gender`, `age`, `ion_user_id`) VALUES
-(1, 'John Kenneth', '', 'Adolfo', 'cabancalan mandaue city', '', 0, 2);
+(1, 'John Kenneth', '', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 4),
+(2, 'John Kenneth', 'Campañon', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,7 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
 (2, 'members', 'General User'),
-(3, 'author', 'authors or developer');
+(3, 'author', 'Authors or Developer');
 
 -- --------------------------------------------------------
 
@@ -95,15 +96,77 @@ CREATE TABLE `login_attempts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `txn_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payment_gross` float(10,2) NOT NULL,
+  `currency_code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `payer_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payment_status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` float(10,2) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `image`, `price`, `status`) VALUES
+(1, 'GeForce GTX 16 Series Graphics Card', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.nvidia.com%2Faem-dam%2FSolutions%2Fgeforce%2Fgraphic-cards%2Fgtx-1660-ti%2Fgeforce-gtx-1660-ti-gallery-b.jpg&imgrefurl=https%3A%2F%2Fwww.nvidia.com%2Fen-us%2Fgeforce%2Fgraphics-cards%2Fgtx-1660-ti%', 1.00, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `services`
 --
 
 CREATE TABLE `services` (
   `id` int(5) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `display_name` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `sub_description` text NOT NULL,
+  `receive_description` text NOT NULL,
+  `use_description` text NOT NULL,
   `price` int(10) NOT NULL,
-  `category_id` int(5) NOT NULL
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `name`, `display_name`, `description`, `sub_description`, `receive_description`, `use_description`, `price`, `created_at`) VALUES
+(1, 'Fanbase Boost', 'Fanbase_Boost', 'Use Fanbase boost to skyrocket your exposure and revenue by driving hundreds or even thousands of ebook and softcover sales.', 'Use Fanbase boost to skyrocket your exposure and revenue by driving hundreds or even thousands of ebook and softcover sales. Our daily Fanbase boost emails alert readers to free and discounted books and ebooks matching their genre interests. These limited-time deals are submitted and curated by our expert editorial team specifically for our highly-engaged audience of book-buyers.', 'What you\'ll get\r\n✔️ Find new readers\r\n\r\n✔️ Increase sales to boost rankings or even hit bestseller lists\r\n\r\n✔️ Drive anywhere from thousands of downloads to increase exposure, reviews, or followers\r\n\r\n✔️ Generate revenue from increased sales and full-priced follow on sales\r\n\r\n✔️ Create awareness for an author brand in the lead-up to a new book launch', 'How it works\r\n\r\n1. Submit a book\r\n\r\nFill out a simple form to share the details of your ebook/book deal with our editorial team.\r\n\r\n\r\n2. Create ad creative\r\n\r\nWe will upload a custom ad creative to create your ad image.\r\n\r\n\r\n3. Set your discount\r\n\r\nOnce your feature is confirmed, you are responsible for arranging the discount for your readers. We encourage you to go for a 70% discount to ensure your book will be very viable.\r\n\r\n\r\n4. We send the deal\r\n\r\nOnce we confirm your book is discounted and you approve the date you wanted it to launch, we will email our fanbase and a custom blurb to millions of readers in your category.', 99, '2022-04-29 17:04:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services_category`
+--
+
+CREATE TABLE `services_category` (
+  `id` int(5) NOT NULL,
+  `name` int(50) NOT NULL,
+  `display_name` int(50) NOT NULL,
+  `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -139,8 +202,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$5ZEp83w8zGI0FpU3w36ReOQaRqnG2ptQ7kqtgV6xdTV57/8.BPRaG', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1651025619, 1, 'Admin', 'istrator', 'ADMIN', '0'),
-(2, '192.168.68.119', NULL, '$2y$10$dGF0SfyY.BCpLj/4oyCTauOnUKFOR.ehXdl4ztpBoIP7qjBOZEHxO', 'adolfojohnkenneth@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1651028891, 1651041038, 1, NULL, NULL, NULL, NULL);
+(1, '127.0.0.1', 'administrator', '$2y$10$Nwi8tEp2L5gb/VyVgkN5bOlnS4bFvFEJTcnV8LlrvZ1r.6N1LBCtC', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1651453319, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(4, '::1', NULL, '$2y$10$gADu/2RKRw9HUr.McCxEKeblPD6GwfTiPmdG.luzWBCLPCQj8IixW', 'adolfojohnkenneth@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1650983560, 1651076515, 1, NULL, NULL, NULL, NULL),
+(5, '::1', NULL, '$2y$10$fu4zzgv3DmEKEWcjVWIg.OIyn9cU/lHP86bofMo.cHy9nyuou.6KS', 'kenneth@mailinator.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1651081536, NULL, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -161,7 +225,8 @@ CREATE TABLE `users_groups` (
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 2, 3);
+(4, 4, 3),
+(5, 5, 3);
 
 --
 -- Indexes for dumped tables
@@ -192,9 +257,27 @@ ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `services`
 --
 ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services_category`
+--
+ALTER TABLE `services_category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -224,7 +307,7 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `books`
@@ -242,25 +325,43 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `services_category`
+--
+ALTER TABLE `services_category`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
