@@ -3,7 +3,7 @@
 		<div class="row mt-5">
 			<div class="col-md-8 col-sm-12">
 				<h1 class="text-dark"><strong><?php echo $service->name ?></strong></h1>
-				<img class="mt-5" src="assets/img/fanbaseboost.jpg" alt="" width="800px" height="450px" style="border-radius: 2%">
+				<img class="mt-5" src="assets/img/fanbaseboost.jpg" alt="" style="border-radius: 2%">
 				<p class="text-muted mt-3" style="margin-right: 3rem;"><?php echo $service->sub_description ?></p>
 			</div>
 			<div class="col-md-4 col-sm-12">

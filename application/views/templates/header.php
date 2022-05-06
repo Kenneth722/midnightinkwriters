@@ -38,6 +38,26 @@
                 padding-top: 82px;
                 /*background: #fafbfc;*/
             }
+            
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .portrait {
+                height: 80px;
+                width: 30px;
+            }
+
+            .landscape {
+                height: 30px;
+                width: 80px;
+            }
+
+            .square {
+                height: 75px;
+                width: 75px;
+            }
         </style>
     </head>
     <body>
