@@ -125,7 +125,11 @@
                         <li class="dropdown"><a href=""><span>Services</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a href="services/index"><i class="bi bi-list">List of Services </i></a></li>
-                                
+                                <?php if(!empty($services)) { ?>
+                                    <?php foreach($services as $service) { ?>
+                                        <li><a href="services/serviceItem?id=<?php echo $service->id; ?>"><i class="bi bi-list"><?php echo $service->name ?> </i></a></li>
+                                    <?php } ?>
+                                <?php } ?>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
