@@ -33,8 +33,9 @@
       // optional styling for buttons
       // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
       style: {
-        shape: 'pill',
-        height: 40,
+      	layout: 'vertical',
+        shape: 'rect',
+        
       },
 
       // set up the transaction
