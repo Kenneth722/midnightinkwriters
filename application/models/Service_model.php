@@ -12,4 +12,10 @@
     		$query = $this->db->get('services');
     		return $query->result();
     	}
+
+        public function getServiceById($id) {
+            $this->db->where('id', $id);
+            $query = $this->db->get('services');
+            return $query->row();
+        }
     }

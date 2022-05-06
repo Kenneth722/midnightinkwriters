@@ -8,13 +8,14 @@
 
         public function index() {
         	$data['services'] = $this->service_model->getServices();
-        	$this->load->view('templates/header');
+        	$this->load->view('templates/header', $data);
         	$this->load->view('services/index', $data);
         	$this->load->view('templates/footer');
         }
 
         public function addNewView() {
-        	$this->load->view('templates/header');
+            $data['services'] = $this->service_model->getServices();
+        	$this->load->view('templates/header', $data);
         	$this->load->view('services/add_new');
         	$this->load->view('templates/footer');
         }
@@ -48,5 +49,15 @@
 
         	redirect('/');
 
+        }
+
+        public function serviceItem() {
+            $id = $this->input->get('id');
+
+            $data['service'] = $this->service_model->getServiceById($id);
+            $data['services'] = $this->service_model->getServices();
+            $this->load->view('templates/header',$data);
+            $this->load->view('services/service',$data);
+            $this->load->view('templates/footer');
         }
     }
