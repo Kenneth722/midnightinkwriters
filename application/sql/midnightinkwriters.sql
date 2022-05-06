@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2022 at 02:49 PM
+-- Generation Time: May 06, 2022 at 03:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -35,16 +35,17 @@ CREATE TABLE `authors` (
   `address` varchar(255) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `age` int(5) NOT NULL,
-  `ion_user_id` int(5) NOT NULL
+  `ion_user_id` int(5) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `expired_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `authors`
 --
 
-INSERT INTO `authors` (`id`, `firstname`, `middlename`, `lastname`, `address`, `gender`, `age`, `ion_user_id`) VALUES
-(1, 'John Kenneth', '', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 4),
-(2, 'John Kenneth', 'Campañon', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 5);
+INSERT INTO `authors` (`id`, `firstname`, `middlename`, `lastname`, `address`, `gender`, `age`, `ion_user_id`, `created_at`, `expired_at`) VALUES
+(1, 'John Kenneth', 'Campañon', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -154,7 +155,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `name`, `display_name`, `description`, `sub_description`, `receive_description`, `use_description`, `price`, `created_at`) VALUES
-(1, 'Fanbase Boost', 'Fanbase_Boost', 'Use Fanbase boost to skyrocket your exposure and revenue by driving hundreds or even thousands of ebook and softcover sales.', 'Use Fanbase boost to skyrocket your exposure and revenue by driving hundreds or even thousands of ebook and softcover sales. Our daily Fanbase boost emails alert readers to free and discounted books and ebooks matching their genre interests. These limited-time deals are submitted and curated by our expert editorial team specifically for our highly-engaged audience of book-buyers.', 'What you\'ll get\r\n✔️ Find new readers\r\n\r\n✔️ Increase sales to boost rankings or even hit bestseller lists\r\n\r\n✔️ Drive anywhere from thousands of downloads to increase exposure, reviews, or followers\r\n\r\n✔️ Generate revenue from increased sales and full-priced follow on sales\r\n\r\n✔️ Create awareness for an author brand in the lead-up to a new book launch', 'How it works\r\n\r\n1. Submit a book\r\n\r\nFill out a simple form to share the details of your ebook/book deal with our editorial team.\r\n\r\n\r\n2. Create ad creative\r\n\r\nWe will upload a custom ad creative to create your ad image.\r\n\r\n\r\n3. Set your discount\r\n\r\nOnce your feature is confirmed, you are responsible for arranging the discount for your readers. We encourage you to go for a 70% discount to ensure your book will be very viable.\r\n\r\n\r\n4. We send the deal\r\n\r\nOnce we confirm your book is discounted and you approve the date you wanted it to launch, we will email our fanbase and a custom blurb to millions of readers in your category.', 99, '2022-04-29 17:04:34');
+(1, 'Fanbase Boost', 'Fanbase_Boost', 'Use Fanbase boost to skyrocket your exposure and revenue by driving hundreds or even thousands of ebook and softcover sales.', 'Use Fanbase boost to skyrocket your exposure and revenue by driving hundreds or even thousands of ebook and softcover sales. Our daily Fanbase boost emails alert readers to free and discounted books and ebooks matching their genre interests. These limited-time deals are submitted and curated by our expert editorial team specifically for our highly-engaged audience of book-buyers.', 'What you\'ll get\r\n✔️ Find new readers\r\n\r\n✔️ Increase sales to boost rankings or even hit bestseller lists\r\n\r\n✔️ Drive anywhere from thousands of downloads to increase exposure, reviews, or followers\r\n\r\n✔️ Generate revenue from increased sales and full-priced follow on sales\r\n\r\n✔️ Create awareness for an author brand in the lead-up to a new book launch', 'How it works\r\n\r\n1. Submit a book\r\n\r\nFill out a simple form to share the details of your ebook/book deal with our editorial team.\r\n\r\n\r\n2. Create ad creative\r\n\r\nWe will upload a custom ad creative to create your ad image.\r\n\r\n\r\n3. Set your discount\r\n\r\nOnce your feature is confirmed, you are responsible for arranging the discount for your readers. We encourage you to go for a 70% discount to ensure your book will be very viable.\r\n\r\n\r\n4. We send the deal\r\n\r\nOnce we confirm your book is discounted and you approve the date you wanted it to launch, we will email our fanbase and a custom blurb to millions of readers in your category.', 99, '2022-04-29 17:04:34'),
+(2, 'Local Listing SEO', 'Local_Listing_SEO', 'Search engine optimization (SEO) is the process of obtaining high placement on the search engine results page in middle layer, algorithm-driven results on Google. These results are often referred to as “local listing\".\r\n', 'We will make local listing SEO the right Internet marketing strategy for your website. We will work on the visibility of your business and make your website appear high up in the search results list. Having many new visitors, who can be converted into customers, will be a great return on your investment. By conforming to Google’s guidelines, we can produce lasting results by continuously bringing you the search engine traffic your business needs.\r\n\r\nHaving many new visitors, who can be converted into customers, will be a great return on your investment. By conforming to Google’s guidelines, we can produce lasting results by continuously bringing you the search engine traffic your business needs.', '✔️ Increase in sales\r\n\r\n✔️ Increase in conversion rate\r\n\r\n✔️ Heightened element of trust\r\n\r\n✔️ Triggers ROI (Return of Investment)\r\n\r\n✔️ Long term effect\r\n\r\n✔️ Brand awareness\r\n\r\n✔️ Puts your book in front of new customers\r\n\r\n✔️ Expanded opportunity for you to be noticed by traditional publishers\r\n\r\n✔️ Higher placement gets more traffic', ' ', 99, '2022-05-05 12:52:10');
 
 -- --------------------------------------------------------
 
@@ -202,9 +204,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$Nwi8tEp2L5gb/VyVgkN5bOlnS4bFvFEJTcnV8LlrvZ1r.6N1LBCtC', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1651453319, 1, 'Admin', 'istrator', 'ADMIN', '0'),
-(4, '::1', NULL, '$2y$10$gADu/2RKRw9HUr.McCxEKeblPD6GwfTiPmdG.luzWBCLPCQj8IixW', 'adolfojohnkenneth@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1650983560, 1651076515, 1, NULL, NULL, NULL, NULL),
-(5, '::1', NULL, '$2y$10$fu4zzgv3DmEKEWcjVWIg.OIyn9cU/lHP86bofMo.cHy9nyuou.6KS', 'kenneth@mailinator.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1651081536, NULL, 1, NULL, NULL, NULL, NULL);
+(1, '127.0.0.1', 'administrator', '$2y$10$Nwi8tEp2L5gb/VyVgkN5bOlnS4bFvFEJTcnV8LlrvZ1r.6N1LBCtC', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1651754958, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(6, '::1', NULL, '$2y$10$obDOVoPX/SEezS1ik2025OHa25y9xOgOzwPiwkInBAZwVXb5x6Mku', 'adolfojohnkenneth@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1651754424, 1651754439, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -225,8 +226,7 @@ CREATE TABLE `users_groups` (
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(4, 4, 3),
-(5, 5, 3);
+(6, 6, 3);
 
 --
 -- Indexes for dumped tables
@@ -307,7 +307,7 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `books`
@@ -343,7 +343,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `services_category`
@@ -355,13 +355,13 @@ ALTER TABLE `services_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
