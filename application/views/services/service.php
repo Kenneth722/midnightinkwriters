@@ -5,6 +5,10 @@
 				<h1 class="text-dark"><strong><?php echo $service->name ?></strong></h1>
 				<img class="mt-5" src="assets/img/fanbaseboost.jpg" alt="" style="border-radius: 2%">
 				<p class="text-muted mt-3" style="margin-right: 3rem;"><?php echo $service->sub_description ?></p>
+        <p class="text-dark h4"><strong>What you'll get</strong></p>
+        <p><?php echo $service->receive_description ?></p>
+        <p class="text-dark h4"><strong>How it works</strong></p>
+        <p><?php echo $service->use_description ?></p>
 			</div>
 			<div class="col-md-4 col-sm-12">
 				<p class="text-dark h5"><strong>Description</strong></p>
@@ -18,7 +22,7 @@
 
 <script src="https://www.paypal.com/sdk/js?client-id=AUIQuS9BPZThHVpJUFc3aMTkkcNZMzK3Dmz3GgL7fqx5A3vrjFDKYlveQQfGqHFKGHvOKQfk_D4iquBF&currency=USD&intent=capture"></script>
 
-<script>
+<!-- <script>
   const fundingSources = [
     paypal.FUNDING.PAYPAL,
       paypal.FUNDING.VENMO,
@@ -83,4 +87,43 @@
       console.log('The funding source is ineligible')
     }
   }
+</script> -->
+
+<script type="text/javascript">
+  var description = "<?php echo $service->name ?>";
+  var price = "<?php echo $service->price ?>";
+  paypal.Buttons({
+      createOrder: function (data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  description: description,
+                  amount: {
+                      value: price
+                  }
+              }]
+          });
+      },
+      onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+              alert('Transaction completed by ' + details.payer.name.given_name);
+          });
+      }
+  }).render('#initial-paypal-button-container');
+  paypal.Buttons({
+      createOrder: function (data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  description: description,
+                  amount: {
+                      value: price
+                  }
+              }]
+          });
+      },
+      onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+              alert('Transaction completed by ' + details.payer.name.given_name);
+          });
+      }
+  }).render('#paypal-button-container');
 </script>
