@@ -57,12 +57,16 @@
 							<div class="row mt-3">
 								<div class="col-md-12 col-sm-12">
 									<div class="form-group">
-										<script
+										<!-- <script
 						                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 						                data-key="pk_test_51Ko7tbDDDYQjuAYT9RSleqcLG4Lm9Rdu3AkLXAc6V269sK8D5zY7m79lcythrbZQ3mWAuCRMP09fqfAhSoGAMCAD007tOgi0D4"
 						                data-locale="auto"
 						                data-label="Proceed to Card Payment">
 						                </script>
+						                <div id="paypal-button-container"></div> -->
+						                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+										  Launch demo modal
+										</button>
 									</div>
 								</div>
 							</div>
@@ -73,3 +77,65 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AUIQuS9BPZThHVpJUFc3aMTkkcNZMzK3Dmz3GgL7fqx5A3vrjFDKYlveQQfGqHFKGHvOKQfk_D4iquBF&currency=USD&intent=capture"></script>
+
+<script type="text/javascript">
+    var description = "Subscription";
+    var price = "<?php echo $subscription_price ?>";
+    var FUNDING_SOURCES = [
+	    paypal.FUNDING.PAYPAL,
+	    // paypal.FUNDING.VENMO,
+	    // paypal.FUNDING.PAYLATER,
+	    // paypal.FUNDING.CREDIT,
+	    // paypal.FUNDING.CARD
+	];
+	FUNDING_SOURCES.forEach(function(fundingSource) {
+
+	    // Initialize the buttons
+	    var button = paypal.Buttons({
+	        fundingSource: fundingSource,
+            createOrder: function (data, actions) {
+	            return actions.order.create({
+	                purchase_units: [{
+	                    description: description,
+	                    amount: {
+	                        value: price
+	                    }
+	                }]
+	            });
+	        },
+	        onApprove: function (data, actions) {
+	            return actions.order.capture().then(function (details) {
+	                alert('Transaction completed by ' + details.payer.name.given_name);
+	            });
+	        }
+	    });
+
+	    // Check if the button is eligible
+	    if (button.isEligible()) {
+
+	        // Render the standalone button for that funding source
+	        button.render('#paypal-button-container');
+	    }
+	});
+</script>
