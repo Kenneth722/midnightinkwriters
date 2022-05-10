@@ -17,6 +17,14 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $(".subscriptionForm").on("click", ".pay-subscription", function () {
+                $('#exampleModal').modal('show');
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
             $('#editable-1').DataTable();
         })
     </script>
