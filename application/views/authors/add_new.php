@@ -6,7 +6,7 @@
 					<div class="card-header">
 						<div class="card-title">Register Author</div>
 					</div>
-					<form method="POST" action="authors/addNew">
+					<form method="POST" class="subscriptionForm" action="authors/addNew">
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-6 col-sm-12">
@@ -64,8 +64,8 @@
 						                data-label="Proceed to Card Payment">
 						                </script>
 						                <div id="paypal-button-container"></div> -->
-						                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-										  Launch demo modal
+						        <button type="button" class="btn btn-primary pay-subscription" data-bs-toggle="modal">
+										  Submit
 										</button>
 									</div>
 								</div>
@@ -79,20 +79,20 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Subscription Payment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div id="paypal-button-container"></div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -100,6 +100,29 @@
 <script src="https://www.paypal.com/sdk/js?client-id=AUIQuS9BPZThHVpJUFc3aMTkkcNZMzK3Dmz3GgL7fqx5A3vrjFDKYlveQQfGqHFKGHvOKQfk_D4iquBF&currency=USD&intent=capture"></script>
 
 <script type="text/javascript">
+	var description = "Subscription";
+  var price = "<?php echo $subscription_price ?>";
+
+	paypal.Buttons({
+      createOrder: function (data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  description: description,
+                  amount: {
+                      value: price
+                  }
+              }]
+          });
+      },
+      onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+              alert('Transaction completed by ' + details.payer.name.given_name);
+          });
+      }
+  }).render('#paypal-button-container');
+</script>
+
+<!-- <script type="text/javascript">
     var description = "Subscription";
     var price = "<?php echo $subscription_price ?>";
     var FUNDING_SOURCES = [
@@ -107,7 +130,7 @@
 	    // paypal.FUNDING.VENMO,
 	    // paypal.FUNDING.PAYLATER,
 	    // paypal.FUNDING.CREDIT,
-	    // paypal.FUNDING.CARD
+	    paypal.FUNDING.CARD
 	];
 	FUNDING_SOURCES.forEach(function(fundingSource) {
 
@@ -138,4 +161,4 @@
 	        button.render('#paypal-button-container');
 	    }
 	});
-</script>
+</script> -->
