@@ -21,7 +21,7 @@
 
     		$this->load->view('templates/header');
         	$this->load->view('authors/add_new', $data);
-        	$this->load->view('templates/footer');
+        	// $this->load->view('templates/footer');
         }
 
         public function addNew() {
@@ -76,5 +76,40 @@
 		      redirect('auth/login');
 		    }
 
+        }
+
+        public function insertAuthorByJson() {
+            $description = $this->input->get('description');
+            $price = $this->input->get('price');
+            $fname = $this->input->get('fname');
+            $mname = $this->input->get('mname');
+            $lname = $this->input->get('lname');
+            $email = $this->input->get('email');
+            $username = $fname . ' ' . $mname . ' ' . $lname;
+            $password = $this->input->get('password');
+            $address = $this->input->get('address');
+            $additional_data = array(
+                'first_name' => $fname,
+                'last_name' => $lname,
+                );
+            $dfg = 3;
+
+            $this->ion_auth->register($username, $password, $email, $dfg);
+            $ion_user_id = $this->db->get_where('users', array('email' => $email))->row()->id;
+            $data = array(
+                'firstname' => $fname,
+                'middlename' => $mname,
+                'lastname' => $lname,
+                'address' => $address,
+            );
+            $this->author_model->insertAuthor($data);
+            // $author_user_id = $this->db->get_where('authors', array('email' => $email))->row()->id;
+            $inserted_id = $this->db->insert_id();
+            $id_info = array('ion_user_id' => $ion_user_id);
+            $this->author_model->updateAuthor($inserted_id, $id_info);
+
+            $data['inputs'] = $description . ' - ' . $price . ' - ' . $fname . ' - ' . $mname . ' - ' . $lname . ' - ' . $email . ' - ' . $address;
+
+            echo json_encode($data);
         }
     }
