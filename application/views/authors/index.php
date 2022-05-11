@@ -26,7 +26,7 @@
 									<tr>
 										<td><?php echo $author->id ?></td>
 										<td><?php echo $name ?></td>
-										<td><?php echo $this->author_model->getAuthorbyIonId($author->ion_user_id)->email ?></td>
+										<td><?php echo $this->author_model->getUserbyIonId($author->ion_user_id)->email ?></td>
 										<td><?php echo $author->address ?></td>
 										<td></td>
 									</tr>
