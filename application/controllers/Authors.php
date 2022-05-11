@@ -116,4 +116,18 @@
 
             echo json_encode($data);
         }
+
+        public function subscriptionRenewal() {
+            $ion_auth = $this->input->get('id');
+            $author_details = $this->author_model->getAuthorbyIonId($ion_auth);
+            $author_id = $author_details->id;
+            $expired_at = gmdate('Y-m-d H:i:s', strtotime('+ 1 MONTH'));
+            $data = array(
+                'expired_at' => $expired_at,
+            );
+            $this->author_model->updateAuthor($author_id, $data);
+            $data['message'] = "Subscription Expiration has been Updated";
+
+            echo json_encode($data);
+        }
     }
