@@ -85,6 +85,8 @@
             $mname = $this->input->get('mname');
             $lname = $this->input->get('lname');
             $email = $this->input->get('email');
+            $created_at = gmdate('Y-m-d H:i:s');
+            $expired_at = gmdate('Y-m-d H:i:s', strtotime('+ 1 MONTH'));
             $username = $fname . ' ' . $mname . ' ' . $lname;
             $password = $this->input->get('password');
             $address = $this->input->get('address');
@@ -101,6 +103,8 @@
                 'middlename' => $mname,
                 'lastname' => $lname,
                 'address' => $address,
+                'created_at' => $created_at,
+                'expired_at' => $expired_at,
             );
             $this->author_model->insertAuthor($data);
             // $author_user_id = $this->db->get_where('authors', array('email' => $email))->row()->id;
