@@ -10,4 +10,9 @@
     		$this->load->view('subscription/index');
     		$this->load->view('templates/footer');
     	}
+
+        public function expired() {
+            $this->load->view('templates/header');
+            $this->load->view('subscription/expired');
+        }
     }
