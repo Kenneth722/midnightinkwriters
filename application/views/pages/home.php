@@ -2,26 +2,44 @@
     <section id="hero" class="d-flex align-items-center">
 
         <div class="container">
-        <div class="row">
-            <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h3 class="text-purple"><strong>It's always midnight somewhere.</strong></h3>
-            <h1 class="text-dark">MidnightInkWriters</h1>
-            <p class="">With our combined 21 years experience in this industry we are able to help thousands of writers publish their story since 2000. We are not a publishing house, instead we are group of liaisons who will bridge towards achieving yours dream of becoming an author with all our contacts in the publishing, marketing, and bookselling world the fastest and cheapest way possible.</p>
-            <div class="d-flex">
-                <div cass="form-group" style="margin-right: 5px">
-                    <a href="#packages" class="btn btn-purple btn-lg text-white scrollto">View Packages</a>
+            
+            <div class="row">
+                <?php if (!$this->ion_auth->logged_in()) { ?>
+                <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                <h3 class="text-purple"><strong>It's always midnight somewhere.</strong></h3>
+                <h1 class="text-dark">MidnightInkWriters</h1>
+                <p class="">With our combined 21 years experience in this industry we are able to help thousands of writers publish their story since 2000. We are not a publishing house, instead we are group of liaisons who will bridge towards achieving yours dream of becoming an author with all our contacts in the publishing, marketing, and bookselling world the fastest and cheapest way possible.</p>
+                <div class="d-flex">
+                    <div cass="form-group" style="margin-right: 5px">
+                        <a href="#packages" class="btn btn-purple btn-lg text-white scrollto">View Packages</a>
+                    </div>
+                    <div class="form-group">
+                        <a href="subscription" class="btn btn-purple btn-lg text-white">Subscribe</a>
+                    </div>
+                    <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                    <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
                 </div>
-                <div class="form-group">
-                    <a href="subscription" class="btn btn-purple btn-lg text-white">Subscribe</a>
                 </div>
-                <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+                <?php } else { ?>
+                    <?php if ($this->ion_auth->in_group(array('author'))) { ?>
+                        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                            <div class="card bg-purple text-white img-fluid animated">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <center>
+                                            <label class="form-label h3">My Total Services</label>
+
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img">
+                <img src="assets/img/homepagebook.jpg" class="img-fluid animated" alt="">
+                </div>
             </div>
-            </div>
-            <div class="col-lg-6 order-1 order-lg-2 hero-img">
-            <img src="assets/img/homepagebook.jpg" class="img-fluid animated" alt="">
-            </div>
-        </div>
         </div>
 
     </section><!-- End Hero -->
