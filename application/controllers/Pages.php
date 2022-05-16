@@ -20,6 +20,13 @@
                 show_404();
             }
 
+            $user = $this->ion_auth->get_user_id();
+            if (!empty($user)) {
+                $author_details = $this->author_model->getAuthorbyIonId($user);
+                $services = $this->service_model->getAuthorServiceById($author_details->id);
+                $data['service_count'] = count($services);
+            }
+
             $data['services'] = $this->service_model->getServices();
             $data['title'] = ucfirst($page);
 

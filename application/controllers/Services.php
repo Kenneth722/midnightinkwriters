@@ -67,6 +67,26 @@
             $data['services'] = $this->service_model->getServices();
             $this->load->view('templates/header',$data);
             $this->load->view('services/service',$data);
-            $this->load->view('templates/footer');
+            // $this->load->view('templates/footer');
+        }
+
+        public function addAuthorServiceByJson() {
+            $service_id = $this->input->get('id');
+            $user = $this->ion_auth->get_user_id();
+            $author_details = $this->author_model->getAuthorbyIonId($user);
+            $now = gmdate('Y-m-d H:i:s');
+            $status = 'Paid';
+            // $data['details'] = $service_id.' '.$author_details->firstname.' '.$author_details->lastname.' '.$now.' '.$status;
+
+            $insertdata = array(
+                "service_id" => $service_id,
+                "author_id" => $author_details->id,
+                "status" => $status,
+                "created_at" => $now,
+            );
+
+            $this->service_model->insertAuthorService($insertdata);
+
+            echo json_encode($data);
         }
     }
