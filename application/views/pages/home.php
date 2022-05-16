@@ -23,12 +23,12 @@
                 <?php } else { ?>
                     <?php if ($this->ion_auth->in_group(array('author'))) { ?>
                         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                            <div class="card bg-purple text-white img-fluid animated">
+                            <div class="card bg-purple text-white">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <center>
-                                            <label class="form-label h3">My Total Services</label>
-
+                                            <label class="form-label h3">My Total Services : <?php echo $service_count; ?></label><br>
+                                            <center><a href="" class="btn btn-light">View My Service List</a></center>
                                         </center>
                                     </div>
                                 </div>
