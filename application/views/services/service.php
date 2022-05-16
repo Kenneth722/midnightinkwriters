@@ -20,110 +20,146 @@
 	</div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AUIQuS9BPZThHVpJUFc3aMTkkcNZMzK3Dmz3GgL7fqx5A3vrjFDKYlveQQfGqHFKGHvOKQfk_D4iquBF&currency=USD&intent=capture"></script>
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- <script>
-  const fundingSources = [
-    paypal.FUNDING.PAYPAL,
-      paypal.FUNDING.VENMO,
-      paypal.FUNDING.PAYLATER,
-      paypal.FUNDING.CARD
-    ]
+    <!-- Vendor JS Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="<?php echo base_url(); ?>/assets/vendor/purecounter/purecounter.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/vendor/php-email-form/validate.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>/assets/plugin/DataTables/datatables.min.js"></script>
 
-  for (const fundingSource of fundingSources) {
-    const paypalButtonsComponent = paypal.Buttons({
-      fundingSource: fundingSource,
+    <!-- Template Main JS File -->
+    <script src="<?php echo base_url(); ?>/assets/js/main.js"></script>
 
-      // optional styling for buttons
-      // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
-      style: {
-      	layout: 'vertical',
-        shape: 'rect',
-        
-      },
-
-      // set up the transaction
-      createOrder: (data, actions) => {
-        // pass in any options from the v2 orders create call:
-        // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
-        const createOrderPayload = {
-          purchase_units: [
-            {
-              amount: {
-                value: '88.44',
-              },
-            },
-          ],
-        }
-
-        return actions.order.create(createOrderPayload)
-      },
-
-      // finalize the transaction
-      onApprove: (data, actions) => {
-        const captureOrderHandler = (details) => {
-          const payerName = details.payer.name.given_name
-          console.log('Transaction completed!')
-        }
-
-        return actions.order.capture().then(captureOrderHandler)
-      },
-
-      // handle unrecoverable errors
-      onError: (err) => {
-        console.error(
-          'An error prevented the buyer from checking out with PayPal',
-        )
-      },
-    })
-
-    if (paypalButtonsComponent.isEligible()) {
-      paypalButtonsComponent
-        .render('#paypal-button-container')
-        .catch((err) => {
-          console.error('PayPal Buttons failed to render')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".subscriptionForm").on("click", ".pay-subscription", function () {
+                $('#exampleModal').modal('show');
+            })
         })
-    } else {
-      console.log('The funding source is ineligible')
-    }
-  }
-</script> -->
+    </script>
 
-<script type="text/javascript">
-  var description = "<?php echo $service->name ?>";
-  var price = "<?php echo $service->price ?>";
-  paypal.Buttons({
-      createOrder: function (data, actions) {
-          return actions.order.create({
-              purchase_units: [{
-                  description: description,
-                  amount: {
-                      value: price
-                  }
-              }]
-          });
-      },
-      onApprove: function (data, actions) {
-          return actions.order.capture().then(function (details) {
-              alert('Transaction completed by ' + details.payer.name.given_name);
-          });
-      }
-  }).render('#initial-paypal-button-container');
-  paypal.Buttons({
-      createOrder: function (data, actions) {
-          return actions.order.create({
-              purchase_units: [{
-                  description: description,
-                  amount: {
-                      value: price
-                  }
-              }]
-          });
-      },
-      onApprove: function (data, actions) {
-          return actions.order.capture().then(function (details) {
-              alert('Transaction completed by ' + details.payer.name.given_name);
-          });
-      }
-  }).render('#paypal-button-container');
-</script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AYAQJK90ho71jvIZIITK374YIzB6TydeG9-fC6_Bu8ju8BB6uDbIdk1hNsBotXkGlh8eeNvWoa06tzth&currency=USD&intent=capture"></script>
+
+	<!-- <script>
+	  const fundingSources = [
+	    paypal.FUNDING.PAYPAL,
+	      paypal.FUNDING.VENMO,
+	      paypal.FUNDING.PAYLATER,
+	      paypal.FUNDING.CARD
+	    ]
+
+	  for (const fundingSource of fundingSources) {
+	    const paypalButtonsComponent = paypal.Buttons({
+	      fundingSource: fundingSource,
+
+	      // optional styling for buttons
+	      // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+	      style: {
+	      	layout: 'vertical',
+	        shape: 'rect',
+	        
+	      },
+
+	      // set up the transaction
+	      createOrder: (data, actions) => {
+	        // pass in any options from the v2 orders create call:
+	        // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+	        const createOrderPayload = {
+	          purchase_units: [
+	            {
+	              amount: {
+	                value: '88.44',
+	              },
+	            },
+	          ],
+	        }
+
+	        return actions.order.create(createOrderPayload)
+	      },
+
+	      // finalize the transaction
+	      onApprove: (data, actions) => {
+	        const captureOrderHandler = (details) => {
+	          const payerName = details.payer.name.given_name
+	          console.log('Transaction completed!')
+	        }
+
+	        return actions.order.capture().then(captureOrderHandler)
+	      },
+
+	      // handle unrecoverable errors
+	      onError: (err) => {
+	        console.error(
+	          'An error prevented the buyer from checking out with PayPal',
+	        )
+	      },
+	    })
+
+	    if (paypalButtonsComponent.isEligible()) {
+	      paypalButtonsComponent
+	        .render('#paypal-button-container')
+	        .catch((err) => {
+	          console.error('PayPal Buttons failed to render')
+	        })
+	    } else {
+	      console.log('The funding source is ineligible')
+	    }
+	  }
+	</script> -->
+
+	<script type="text/javascript">
+	  var description = "<?php echo $service->name ?>";
+	  var price = "<?php echo $service->price ?>";
+	  var service_id = "<?php echo $service->id ?>";
+	  paypal.Buttons({
+	      createOrder: function (data, actions) {
+	          return actions.order.create({
+	              purchase_units: [{
+	                  description: description,
+	                  amount: {
+	                      value: price
+	                  }
+	              }]
+	          });
+	      },
+	      onApprove: function (data, actions) {
+	          return actions.order.capture().then(function (details) {
+	              alert('Transaction completed by ' + details.payer.name.given_name);
+	          });
+	      }
+	  }).render('#initial-paypal-button-container');
+	  paypal.Buttons({
+	      createOrder: function (data, actions) {
+	          return actions.order.create({
+	              purchase_units: [{
+	                  description: description,
+	                  amount: {
+	                      value: price
+	                  }
+	              }]
+	          });
+	      },
+	      onApprove: function (data, actions) {
+	          return actions.order.capture().then(function (details) {
+	              alert('Transaction completed by ' + details.payer.name.given_name);
+	              $.ajax({
+	              	url: 'services/addAuthorServiceByJson?id='+service_id,
+	              	method: 'GET',
+	              	data: '',
+	              	dataType: 'json',
+	              	success: function(response) {
+	              		alert(response.details);
+	              	}
+	              });
+	          });
+	      }
+	  }).render('#paypal-button-container');
+	</script>
+
+	</body>
+</html>

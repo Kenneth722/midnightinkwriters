@@ -161,7 +161,7 @@
         })
     </script>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AUIQuS9BPZThHVpJUFc3aMTkkcNZMzK3Dmz3GgL7fqx5A3vrjFDKYlveQQfGqHFKGHvOKQfk_D4iquBF&currency=USD&intent=capture"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AYAQJK90ho71jvIZIITK374YIzB6TydeG9-fC6_Bu8ju8BB6uDbIdk1hNsBotXkGlh8eeNvWoa06tzth&currency=USD&intent=capture"></script>
 
 	<script type="text/javascript">
 		var description = "Subscription";
