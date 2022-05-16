@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 03:17 AM
+-- Generation Time: May 16, 2022 at 07:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -45,7 +45,29 @@ CREATE TABLE `authors` (
 --
 
 INSERT INTO `authors` (`id`, `firstname`, `middlename`, `lastname`, `address`, `gender`, `age`, `ion_user_id`, `created_at`, `expired_at`) VALUES
-(1, 'John Kenneth', 'Campañon', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'John Kenneth', 'Campañon', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 6, '0000-00-00 00:00:00', '2022-06-11 15:34:19'),
+(2, 'Kevin', 'Campañon', 'Adolfo', 'Cabancalan Mandaue City', '', 0, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authorservice`
+--
+
+CREATE TABLE `authorservice` (
+  `id` int(5) NOT NULL,
+  `service_id` int(5) NOT NULL,
+  `author_id` int(5) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `authorservice`
+--
+
+INSERT INTO `authorservice` (`id`, `service_id`, `author_id`, `status`, `created_at`) VALUES
+(1, 1, 1, 'Paid', '2022-05-16 16:35:07');
 
 -- --------------------------------------------------------
 
@@ -204,8 +226,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$Nwi8tEp2L5gb/VyVgkN5bOlnS4bFvFEJTcnV8LlrvZ1r.6N1LBCtC', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1651754958, 1, 'Admin', 'istrator', 'ADMIN', '0'),
-(6, '::1', NULL, '$2y$10$obDOVoPX/SEezS1ik2025OHa25y9xOgOzwPiwkInBAZwVXb5x6Mku', 'adolfojohnkenneth@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1651754424, 1651754439, 1, NULL, NULL, NULL, NULL);
+(1, '127.0.0.1', 'administrator', '$2y$10$Nwi8tEp2L5gb/VyVgkN5bOlnS4bFvFEJTcnV8LlrvZ1r.6N1LBCtC', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1651851600, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(6, '::1', NULL, '$2y$10$obDOVoPX/SEezS1ik2025OHa25y9xOgOzwPiwkInBAZwVXb5x6Mku', 'adolfojohnkenneth@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1651754424, 1652714559, 1, NULL, NULL, NULL, NULL),
+(7, '::1', NULL, '$2y$10$VzcwHqxaz58cN2ysnkzxB.JJt4DS2ODAPsnaCGYisQPuP6LoV5fKa', 'kevin2002@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1652201420, NULL, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -226,7 +249,8 @@ CREATE TABLE `users_groups` (
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(6, 6, 3);
+(6, 6, 3),
+(7, 7, 3);
 
 --
 -- Indexes for dumped tables
@@ -236,6 +260,12 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 -- Indexes for table `authors`
 --
 ALTER TABLE `authors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `authorservice`
+--
+ALTER TABLE `authorservice`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -307,6 +337,12 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `authorservice`
+--
+ALTER TABLE `authorservice`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -355,13 +391,13 @@ ALTER TABLE `services_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
