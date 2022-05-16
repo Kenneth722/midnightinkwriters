@@ -18,4 +18,15 @@
             $query = $this->db->get('services');
             return $query->row();
         }
+
+        public function insertAuthorService($data) {
+            $this->db->insert('authorservice', $data);
+        }
+
+        public function getAuthorServiceById($author_id) {
+            $this->db->where('author_id', $author_id);
+            $query = $this->db->get('authorservice');
+
+            return $query->result();
+        }
     }
