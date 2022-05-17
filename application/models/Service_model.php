@@ -29,4 +29,9 @@
 
             return $query->result();
         }
+
+        public function getAuthorServices() {
+            $query = $this->db->get('authorservice');
+            return $query->result();
+        }
     }
