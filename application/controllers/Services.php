@@ -96,7 +96,8 @@
             $user = $this->ion_auth->get_user_id();
             $author_details = $this->author_model->getAuthorbyIonId($user);
             $data['my_services'] = $this->service_model->getAuthorServiceById($author_details->id);
-            $this->load->view('templates/header');
+            $data['services'] = $this->service_model->getServices();
+            $this->load->view('templates/header', $data);
             $this->load->view('services/author_services', $data);
             $this->load->view('templates/footer');
         }
