@@ -19,6 +19,12 @@
         	return $query->result();
         }
 
+        public function getAuthorbyId($id) {
+            $this->db->where('id', $id);
+            $query = $this->db->get('authors');
+            return $query->row();
+        }
+
         public function getAuthorbyIonId($ion) {
             $this->db->where('ion_user_id', $ion);
             $query = $this->db->get('authors');
