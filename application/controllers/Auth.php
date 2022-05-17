@@ -287,6 +287,38 @@ class Auth extends CI_Controller
 			if ($forgotten)
 			{
 				// if there were no errors
+				$config = [
+					'protocol' => 'smtp',
+					'smtp_host' => 'ssl://smtp.googlemail.com',
+					'smtp_port' => 465,
+					'smtp_user' => 'kenneth.rygeltech@gmail.com',
+					'smtp_pass' => 'hlpbrjrxknteebuh',
+					'mailtype' => 'html'
+				];
+				$data = array(
+					'identity'=>$forgotten['identity'],
+					'forgotten_password_code' => $forgotten['forgotten_password_code'],
+				);
+				
+				$this->load->library('email');
+				$this->email->initialize($config);
+				$this->load->helpers('url');
+				$this->email->set_newline("\r\n");
+
+				$this->email->from('MidnightInkWriters');
+				$this->email->to($data['identity']);
+				$this->email->subject("forgot password");
+				$body = $this->load->view('auth/email/forgot_password.tpl.php',$data,TRUE);
+				$this->email->message($body);
+				if ($this->email->send()) {
+
+					$this->session->set_flashdata('success','Email Send sucessfully');
+					return redirect('auth/login');
+				} 
+				else {
+					echo "Email not send .....";
+					show_error($this->email->print_debugger());
+				}
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
 			}
