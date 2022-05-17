@@ -73,41 +73,13 @@
             <?php if (!$this->ion_auth->logged_in()) { ?>
                 <ul>
                     <li><a class="nav-link scrollto active" href="<?php echo base_url(); ?>">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">Pay</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Fanbase Boost</a></li>
-                    <li><a class="nav-link scrollto" href="#portfolio">Local Listing SEO</a></li>
-                    <li class="dropdown"><a href="#"><span>Publishing</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                            <ul>
-                            <li><a href="#">Deep Drop Down 1</a></li>
-                            <li><a href="#">Deep Drop Down 2</a></li>
-                            <li><a href="#">Deep Drop Down 3</a></li>
-                            <li><a href="#">Deep Drop Down 4</a></li>
-                            <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Bookstore Placement</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                            <ul>
-                            <li><a href="#">Deep Drop Down 1</a></li>
-                            <li><a href="#">Deep Drop Down 2</a></li>
-                            <li><a href="#">Deep Drop Down 3</a></li>
-                            <li><a href="#">Deep Drop Down 4</a></li>
-                            <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
+                        <?php if(!empty($services)) { ?>
+                            <?php foreach($services as $service) { ?>
+                                <li><a href="services/serviceItem?id=<?php echo $service->id; ?>"><i class="bi bi-book"> <?php echo $service->name ?> </i></a></li>
+                            <?php } ?>
+                        <?php } ?>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#"><span>More</span> <i class="bi bi-chevron-down"></i></a>
@@ -147,7 +119,7 @@
                                 <li><a href="services/index"><i class="bi bi-list">List of Services </i></a></li>
                                 <?php if(!empty($services)) { ?>
                                     <?php foreach($services as $service) { ?>
-                                        <li><a href="services/serviceItem?id=<?php echo $service->id; ?>"><i class="bi bi-list"><?php echo $service->name ?> </i></a></li>
+                                        <li><a href="services/serviceItem?id=<?php echo $service->id; ?>"><i class="bi bi-book"> <?php echo $service->name ?> </i></a></li>
                                     <?php } ?>
                                 <?php } ?>
                             </ul>
