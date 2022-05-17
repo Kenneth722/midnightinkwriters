@@ -61,35 +61,35 @@
     <main id="main">
 
         <!-- ======= Featured Services Section ======= -->
-        <!-- <section id="featured-services" class="featured-services">
+        <section id="featured-services" class="featured-services">
         <div class="container">
 
             <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="icon-box">
                 <div class="icon"><i class="bi bi-laptop"></i></div>
-                <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                <h4 class="title"><a href="">Increase Exposure</a></h4>
+                <p class="description">We'll help you generate traffic for your business and generate leads.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
                 <div class="icon-box">
                 <div class="icon"><i class="bi bi-card-checklist"></i></div>
-                <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                <h4 class="title"><a href="">Flexible Pricing Models</a></h4>
+                <p class="description">We offer several payment options so you'll get the best plan for you.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
                 <div class="icon-box">
                 <div class="icon"><i class="bi bi-clipboard-data"></i></div>
-                <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                <h4 class="title"><a href="">Guaranteed Results</a></h4>
+                <p class="description">Results are guaranteed with our proven marketing services.</p>
                 </div>
             </div>
             </div>
 
         </div>
-        </section> -->
+        </section>
         <!-- End Featured Services Section -->
 
         <!-- ======= About Section ======= -->
@@ -333,6 +333,6 @@
             </div>
 
         </div>
-        </section> --><!-- End Portfolio Section -->
+        </section>  --><!-- End Portfolio Section -->
 
     </main><!-- End #main -->
