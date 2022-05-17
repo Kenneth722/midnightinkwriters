@@ -28,7 +28,21 @@
                                     <div class="form-group">
                                         <center>
                                             <label class="form-label h3">My Total Services : <?php echo $service_count; ?></label><br>
-                                            <center><a href="" class="btn btn-light">View My Service List</a></center>
+                                            <center><a href="services/myServices" class="btn btn-light">View My Service List</a></center>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php if ($this->ion_auth->in_group(array('admin'))) { ?>
+                        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                            <div class="card bg-purple text-white">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <center>
+                                            <label class="form-label h3">List of Authors Services : <?php echo $service_count; ?></label><br>
+                                            <!-- <center><a href="services/myServices" class="btn btn-light">View My Service List</a></center> -->
                                         </center>
                                     </div>
                                 </div>
