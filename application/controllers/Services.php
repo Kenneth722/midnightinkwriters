@@ -101,4 +101,11 @@
             $this->load->view('services/author_services', $data);
             $this->load->view('templates/footer');
         }
+
+        public function pay() {
+            $data['services'] = $this->service_model->getServices();
+            $this->load->view('templates/header', $data);
+            $this->load->view('services/pay');
+            // $this->load->view('templates/footer');
+        }
     }

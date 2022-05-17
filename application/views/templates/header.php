@@ -73,6 +73,7 @@
             <?php if (!$this->ion_auth->logged_in()) { ?>
                 <ul>
                     <li><a class="nav-link scrollto active" href="<?php echo base_url(); ?>">Home</a></li>
+                    <li><a class="nav-link" href="services/pay">Pay</a></li>
                     <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                         <?php if(!empty($services)) { ?>
