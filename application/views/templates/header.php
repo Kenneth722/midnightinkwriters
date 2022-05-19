@@ -58,6 +58,19 @@
                 height: 75px;
                 width: 75px;
             }
+
+            @media screen and (max-width: 375px) {
+                 #hero {
+                    height: 50vh !important;
+                }
+            }
+
+            /*@media screen and (min-width: 376px) {
+                 #hero {
+                    height: 100vh !important;
+                }
+            }*/
+
         </style>
     </head>
     <body>
