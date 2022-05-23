@@ -1,4 +1,4 @@
-    <!-- ======= Hero Section ======= -->
+======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
 
         <div class="container">
@@ -22,7 +22,7 @@
                 </div>
                 <?php } else { ?>
                     <?php if ($this->ion_auth->in_group(array('author'))) { ?>
-                        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                        <!-- <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
                             <div class="card bg-purple text-white">
                                 <div class="card-body">
                                     <div class="form-group">
@@ -31,6 +31,88 @@
                                             <center><a href="services/myServices" class="btn btn-light">View My Service List</a></center>
                                         </center>
                                     </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card bg-purple">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-1">
+                                                <h2 class="text-white">Author's Profile</h2>
+                                                <span class="text-white"><strong>Name: <?php
+                                                    $user = $this->author_model->getAuthorByIonId($this->ion_auth->get_user_id());
+                                                    echo $user->firstname.' '.$user->lastname;
+                                                ?></strong></span>
+                                                <hr>
+                                            </div>
+                                            <div class="col-md-12 mb-1">
+                                                <a href="services/myServices" class="text-white">
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <span>Total Services </span>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button class="btn badge rounded-pill bg-light text-dark"><?php echo $service_count; ?></button>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <hr>
+                                            <div class="col-md-12 mb-1">
+                                                <a href="services/myServices" class="text-white">
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <span>Paid Services </span>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button class="btn badge rounded-pill bg-light text-dark"><?php echo $paid_service_count; ?></button>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <hr>
+                                            <div class="col-md-12 mb-1">
+                                                <a href="auth/change_password" class="text-white">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="badge rounded-pill bg-light text-dark">Change Password </span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <hr>
+                                            <div class="col-md-12 mb-1">
+                                                <a href="auth/logout" class="text-white">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="badge rounded-pill bg-light text-dark">Logout </span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label class="h3"><strong>Subscribed Services</strong></label>
+                                    <?php foreach($my_services as $service) { ?>
+                                        <div class="col-md-4">
+                                            <div class="card bg-purple text-white">
+                                                <div class="card-header">
+                                                    <div class="card-title">
+                                                        <center><?php echo "Created on: ".date('F j, Y h:i:A', strtotime($service->created_at.' UTC')) ?></center>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <center><strong><?php echo $this->service_model->getServiceById($service->service_id)->name; ?></strong></center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -50,18 +132,44 @@
                         </div>
                     <?php } ?>
                 <?php } ?>
-                <div class="col-lg-6 order-1 order-lg-2 hero-img">
+                <!-- <div class="col-lg-6 order-1 order-lg-2 hero-img">
                 <img src="assets/img/homepagebook.jpg" class="img-fluid animated" alt="">
-                </div>
+                </div> -->
             </div>
         </div>
 
     </section><!-- End Hero -->
+
+    <!-- <?php if ($this->ion_auth->in_group(array('author'))) { ?>
+    <div class="row mb-5">
+        <div class="col-md-12 col-md-12">
+            <div class="container">
+                <div class="form-group">
+                    <label class="h3"><strong>Subscribed Services</strong></label>
+                    <?php foreach($my_services as $service) { ?>
+                        <div class="col-md-4">
+                            <div class="card bg-purple text-white">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <center><?php echo "Created on: ".date('F j, Y h:i:A', strtotime($service->created_at.' UTC')) ?></center>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <center><strong><?php echo $this->service_model->getServiceById($service->service_id)->name; ?></strong></center>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?> -->
     
     <main id="main">
 
         <!-- ======= Featured Services Section ======= -->
-        <section id="featured-services" class="featured-services">
+        <section id="featured-services" class="featured-services" style="height: 50vh">
         <div class="container">
 
             <div class="row">
@@ -335,4 +443,4 @@
         </div>
         </section>  --><!-- End Portfolio Section -->
 
-    </main><!-- End #main -->
+    </main><!-- End #main
