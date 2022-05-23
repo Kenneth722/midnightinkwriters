@@ -177,18 +177,21 @@ class Auth extends CI_Controller
 				'name' => 'old',
 				'id' => 'old',
 				'type' => 'password',
+				'class' => 'form-control',
 			];
 			$this->data['new_password'] = [
 				'name' => 'new',
 				'id' => 'new',
 				'type' => 'password',
 				'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
+				'class' => 'form-control',
 			];
 			$this->data['new_password_confirm'] = [
 				'name' => 'new_confirm',
 				'id' => 'new_confirm',
 				'type' => 'password',
 				'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
+				'class' => 'form-control',
 			];
 			$this->data['user_id'] = [
 				'name' => 'user_id',
@@ -198,7 +201,10 @@ class Auth extends CI_Controller
 			];
 
 			// render
+			$this->load->view('templates/header');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->load->view('templates/footer');
+
 		}
 		else
 		{
@@ -210,7 +216,8 @@ class Auth extends CI_Controller
 			{
 				//if the password was successfully changed
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				$this->logout();
+				// $this->logout();
+				redirect('/');
 			}
 			else
 			{

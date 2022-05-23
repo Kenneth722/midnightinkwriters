@@ -26,8 +26,9 @@
                 $user = $this->ion_auth->get_user_id();
                 if (!empty($user)) {
                     $author_details = $this->author_model->getAuthorbyIonId($user);
-                    $services = $this->service_model->getAuthorServiceById($author_details->id);
-                    $data['service_count'] = count($services);
+                    $data['my_services'] = $this->service_model->getAuthorServiceById($author_details->id);
+                    $data['service_count'] = count($data['my_services']);
+                    $data['paid_service_count'] = count($this->service_model->getPaidServices($author_details->id));
                 }
             }
 

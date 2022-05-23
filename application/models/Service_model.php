@@ -13,6 +13,13 @@
     		return $query->result();
     	}
 
+        public function getPaidServices($author_id) {
+            $this->db->where('author_id', $author_id);
+            $this->db->where('status', 'Paid');
+            $query = $this->db->get('authorservice');
+            return $query->result();
+        }
+
         public function getServiceById($id) {
             $this->db->where('id', $id);
             $query = $this->db->get('services');
