@@ -64,7 +64,7 @@
 						                data-label="Proceed to Card Payment">
 						                </script>
 						                <div id="paypal-button-container"></div> -->
-						        <button type="button" class="btn btn-primary pay-subscription" data-bs-toggle="modal">
+						        <button type="submit" class="btn btn-primary pay-subscription" data-bs-toggle="modal">
 										  Submit
 										</button>
 									</div>
@@ -153,7 +153,7 @@
     <!-- Template Main JS File -->
     <script src="<?php echo base_url(); ?>/assets/js/main.js"></script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function () {
             $(".subscriptionForm").on("click", ".pay-subscription", function () {
                 $('#exampleModal').modal('show');
@@ -204,7 +204,7 @@
 	        )
 	      },
 	  }).render('#paypal-button-container');
-	</script>
+	</script> -->
 
     </body>
 </html>

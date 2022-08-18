@@ -6,6 +6,11 @@
             $this->load->model('ion_auth_model');
     		$this->load->database();
     		$this->load->library(['ion_auth', 'form_validation']);
+
+            $this->config->load('ion_auth', TRUE);
+            $this->load->library(['email']);
+            $this->lang->load('ion_auth');
+            $this->load->helper(['cookie', 'language','url']);
     	}
 
         public function index() {
@@ -25,14 +30,14 @@
         }
 
         public function addNew() {
-        	require_once(APPPATH.'libraries/payment/stripe-php-master/init.php');
+      //   	require_once(APPPATH.'libraries/payment/stripe-php-master/init.php');
 
-        	$stripeDetails = array(
-		        "secretKey" => "sk_test_51Ko7tbDDDYQjuAYT90m8u05TtJH3beFZB20RTOwDhfWjkOeZkZrKAuyQAyL6Cz2Wyxd2YJdmlRYnSsTTlcWzNcqg005QUnOirv",
-		        "publishableKey" => "pk_test_51Ko7tbDDDYQjuAYT9RSleqcLG4Lm9Rdu3AkLXAc6V269sK8D5zY7m79lcythrbZQ3mWAuCRMP09fqfAhSoGAMCAD007tOgi0D4"
-		    );
+      //   	$stripeDetails = array(
+		    //     "secretKey" => "sk_test_51Ko7tbDDDYQjuAYT90m8u05TtJH3beFZB20RTOwDhfWjkOeZkZrKAuyQAyL6Cz2Wyxd2YJdmlRYnSsTTlcWzNcqg005QUnOirv",
+		    //     "publishableKey" => "pk_test_51Ko7tbDDDYQjuAYT9RSleqcLG4Lm9Rdu3AkLXAc6V269sK8D5zY7m79lcythrbZQ3mWAuCRMP09fqfAhSoGAMCAD007tOgi0D4"
+		    // );
 
-		    \Stripe\Stripe::setApiKey($stripeDetails["secretKey"]);
+		    // \Stripe\Stripe::setApiKey($stripeDetails["secretKey"]);
 
             $fname = $this->input->post('f_name');
             $mname = $this->input->post('m_name');
@@ -61,20 +66,51 @@
             $id_info = array('ion_user_id' => $ion_user_id);
             $this->author_model->updateAuthor($inserted_id, $id_info);
 
+            $config = [
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'kenneth.rygeltech@gmail.com',
+                'smtp_pass' => 'hlpbrjrxknteebuh',
+                'mailtype' => 'html'
+            ];
+
+            $this->load->library('email');
+            $this->email->initialize($config);
+            $this->load->helpers('url');
+            $this->email->set_newline("\r\n");
+
+            $this->email->from('MidnightInkWriters');
+            $this->email->to($email);
+            $this->email->subject($this->lang->line('email_activation_subject'));
+            $body = $this->load->view('auth/email/activate.tpl.php',$data,TRUE);
+            $this->email->message($body);
+            if ($this->email->send()) {
+
+                $this->session->set_flashdata('success','Email Send sucessfully');
+                return redirect('auth/login');
+            } 
+            else {
+                echo "Email not send .....";
+                show_error($this->email->print_debugger());
+            }
+
 		    $token = $_POST["stripeToken"];
 		    $sub_amount = $this->input->post('sub_price');
 		    $sub_type = $this->input->post('sub_type');
 		    $desc = "Author".' '.$sub_type.' '."Subscription";
-		    $charge = \Stripe\Charge::create([
-		      "amount" => str_replace(",","",$sub_amount) * 100,
-		      "currency" => 'usd',
-		      "description"=>$desc,
-		      "source"=> $token,
-		    ]);
+		    // $charge = \Stripe\Charge::create([
+		    //   "amount" => str_replace(",","",$sub_amount) * 100,
+		    //   "currency" => 'usd',
+		    //   "description"=>$desc,
+		    //   "source"=> $token,
+		    // ]);
 
-		    if($charge){
-		      redirect('auth/login');
-		    }
+		    // if($charge){
+		    //   redirect('auth/login');
+		    // }
+
+            redirect('auth/login');
 
         }
 
